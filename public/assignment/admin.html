@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>Form Maker</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -43,8 +43,6 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="./register.html">Register</a></li>
-                <li><a href="./login.html">Login</a></li>
                 <li><a href="#">Username</a></li>
                 <li><a href="./login.html">Logout</a></li>
             </ul>
@@ -70,15 +68,9 @@
                     <thead>
                     <tr>
                         <th><i class="glyphicon glyphicon-triangle-bottom"></i>Username</th>
-                        <th>
-                            <span class="glyphicon plyphicon-triangle-bottom">Password</span>
-                        </th>
-                        <th>
-                            <span class="glyphicon plyphicon-triangle-bottom">Role</span>
-                        </th>
-                        <th>
-                            <span class="glyphicon plyphicon-triangle-bottom">Action</span>
-                        </th>
+                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>Password</th>
+                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>Role</th>
+                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -86,25 +78,25 @@
                         <td><input type="text" class="form-control" placeholder="username"></td>
                         <td><input type="text" class="form-control" placeholder="password"></td>
                         <td><input type="text" class="form-control" placeholder="role1, role2"></td>
-                        <td></td>
+                        <td><i class="glyphicon glyphicon-plus"></i><i class="glyphicon glyphicon-ok"></i></td>
                     </tr>
                     <tr>
                         <td>alice</td>
                         <td></td>
                         <td>student</td>
-                        <td></td>
+                        <td><i class="glyphicon glyphicon-remove"></i><i class="glyphicon glyphicon-pencil"></i></td>
                     </tr>
                     <tr>
                         <td>bob</td>
                         <td></td>
                         <td>faculty | admin</td>
-                        <td></td>
+                        <td><i class="glyphicon glyphicon-remove"></i><i class="glyphicon glyphicon-pencil"></i></td>
                     </tr>
                     <tr>
                         <td>charlie</td>
                         <td></td>
                         <td></td>
-                        <td></td>
+                        <td><i class="glyphicon glyphicon-remove"></i><i class="glyphicon glyphicon-pencil"></i></td>
                     </tr>
                     </tbody>
                 </table>
