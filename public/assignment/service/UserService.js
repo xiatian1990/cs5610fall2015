@@ -6,8 +6,11 @@
     function UserService(){
         var users = [{
             id: "1234567890",
-            username: "timjobs",
-            password: "12345"}];
+            userName: "timjobs",
+            password: "12345",
+            firstName: "Tian",
+            lastName: "Xia",
+            email: "xt@gmail.com"}];
 
         var service = {
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
@@ -19,10 +22,10 @@
 
         return service;
 
-        function findUserByUsernameAndPassword(username, password, callback){
+        function findUserByUsernameAndPassword(userName, password, callback){
             var existUser = null;
             for(var index in users){
-                if(users[index].username === username && users[index].password === password){
+                if(users[index].userName === userName && users[index].password === password){
                     existUser = users[index];
                 }
             }
@@ -33,9 +36,9 @@
             callback(users);
         }
 
-        function deleteUserById(userid, callback){
+        function deleteUserById(userId, callback){
             for(var index in users){
-                if(users[index].id === userid){
+                if(users[index].id === userId){
                     users.slice(index, 1);
                 }
             }
@@ -43,15 +46,15 @@
         }
 
         function createUser(newUser, callback){
-            newUser.id = guid();
+            newUser.id = Guid.create().value;
             users.push(newUser);
             callback(newUser);
         }
 
-        function updateUser(userid, updatedUser, callback){
+        function updateUser(userId, updatedUser, callback){
             for(var index in users){
-                if(users[index].id === userid){
-                    users[index].username = updatedUser.username;
+                if(users[index].id === userId){
+                    users[index].userName = updatedUser.userName;
                     users[index].password = updatedUser.password;
                     users[index].firstName = updatedUser.firstName;
                     users[index].lastName = updatedUser.lastName;

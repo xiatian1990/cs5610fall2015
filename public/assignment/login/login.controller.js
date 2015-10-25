@@ -9,7 +9,7 @@
 
         function login(){
             UserService.findUserByUsernameAndPassword(
-                $scope.username,
+                $scope.userName,
                 $scope.password,
                 function(user){
                     if(user != null){
