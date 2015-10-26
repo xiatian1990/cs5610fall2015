@@ -53,12 +53,29 @@
 
         function updateUser(userId, updatedUser, callback){
             for(var index in users){
+
                 if(users[index].id === userId){
-                    users[index].userName = updatedUser.userName;
-                    users[index].password = updatedUser.password;
-                    users[index].firstName = updatedUser.firstName;
-                    users[index].lastName = updatedUser.lastName;
-                    users[index].email = updatedUser.email;
+                
+                    if(updatedUser.userName != null){
+                        users[index].userName = updatedUser.userName;
+                    }
+
+                    if(updatedUser.password != null){
+                        users[index].password = updatedUser.password;
+                    }
+
+                    if(updatedUser.firstName != null){
+                        users[index].firstName = updatedUser.firstName;
+                    }
+
+                    if(updatedUser.lastName != null){
+                        users[index].lastName = updatedUser.lastName;
+                    }
+
+                    if(updatedUser.email != null){
+                        users[index].email = updatedUser.email;
+                    }
+
                     callback(users[index]);
                 }
             }

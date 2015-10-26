@@ -6,19 +6,16 @@
     function RegisterController($scope, $rootScope, $location, UserService){
         $scope.$location = $location;
         $scope.register = register;
-        $scope.newUser = {
-            id: "",
-            userName: "",
-            password: "",
-            email: "",
-            firstName: "",
-            lastName: ""};
 
         function register(){
             if($scope.password === $scope.verifiedPassword){
-                $scope.newUser.userName = $scope.userName;
-                $scope.newUser.password = $scope.password;
-                $scope.newUser.email = $scope.email;
+                $scope.newUser = {
+                    id: "",
+                    userName: $scope.userName,
+                    password: $scope.password,
+                    email: $scope.email,
+                    firstName: "Please Input First Name",
+                    lastName: "Please Input Last Name"};
 
                 UserService.createUser(
                     $scope.newUser,
