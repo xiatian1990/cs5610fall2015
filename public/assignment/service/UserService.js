@@ -59,7 +59,7 @@
                     users[index].firstName = updatedUser.firstName;
                     users[index].lastName = updatedUser.lastName;
                     users[index].email = updatedUser.email;
-                    callback(eachUser);
+                    callback(users[index]);
                 }
             }
         }
