@@ -55,7 +55,7 @@
             for(var index in users){
 
                 if(users[index].id === userId){
-                
+
                     if(updatedUser.userName != null){
                         users[index].userName = updatedUser.userName;
                     }

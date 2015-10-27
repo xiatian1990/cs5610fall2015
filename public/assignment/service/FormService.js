@@ -35,7 +35,7 @@
         function deleteFormById(formId, callback){
             for(var index in forms){
                 if( forms[index].id === formId){
-                    forms.slice(index, 1);
+                    forms.splice(index, 1);
                 }
             }
             callback(forms);
@@ -43,12 +43,12 @@
 
         function updateFormById(formId, newForm, callback){
             for(var index in forms){
-                if(forms[index].formId === formId){
-                    form[index].userId = newForm.userId;
-                    form[index].name = newForm.name;
+                if(forms[index].id === formId){
+                    forms[index].userId = newForm.userId;
+                    forms[index].name = newForm.name;
                 }
             }
-            callback(newForm);
+            callback(forms[index]);
         }
     }
 

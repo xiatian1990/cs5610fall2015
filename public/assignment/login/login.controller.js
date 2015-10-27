@@ -14,7 +14,6 @@
                 function(user){
                     if(user != null){
                         $rootScope.currentUser = user;
-                        console.log($rootScope.currentUser)
                         $location.url('/profile');
                     }else{
                         $location.url('/register');
