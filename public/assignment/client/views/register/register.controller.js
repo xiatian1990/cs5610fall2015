@@ -17,12 +17,10 @@
                     firstName: "Please Input First Name",
                     lastName: "Please Input Last Name"};
 
-                UserService.createUser(
-                    $scope.newUser,
-                    function(newUser){
-                        $rootScope.currentUser = newUser;
-                        $location.url('/profile');
-                    });
+                UserService.createUser($scope.newUser).then(function(newUser){
+                    $rootScope.currentUser = newUser;
+                    $location.url('/profile');
+                )};
             }else{
                 $location.url('/register');
             }

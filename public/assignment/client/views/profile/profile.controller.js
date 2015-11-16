@@ -9,7 +9,7 @@
 
         function update(){
             var updatedUser = {
-                userName: $scope.updateUserName,
+                username: $scope.updateUserName,
                 password: $scope.updatePassword,
                 firstName: $scope.updateFirstName,
                 lastName: $scope.updateLastName,
@@ -18,11 +18,10 @@
 
             UserService.updateUser(
                 $rootScope.currentUser.id,
-                updatedUser,
-                function(updatedUser){
-                    $rootScope.currentUser = updatedUser;
-                }
-            );
+                updatedUser
+            ).then(function(updatedUser){
+                $rootScope.currentUser = updatedUser;
+            });
         }
 
     }

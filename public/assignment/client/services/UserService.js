@@ -3,14 +3,7 @@
         .module("FormBuilderApp")
         .factory("UserService", UserService);
 
-    function UserService(){
-        var users = [{
-            id: "1234567890",
-            userName: "timjobs",
-            password: "12345",
-            firstName: "Tian",
-            lastName: "Xia",
-            email: "xt@gmail.com"}];
+    function UserService($http, $q){
 
         var service = {
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
@@ -22,63 +15,44 @@
 
         return service;
 
-        function findUserByUsernameAndPassword(userName, password, callback){
-            var existUser = null;
-            for(var index in users){
-                if(users[index].userName === userName && users[index].password === password){
-                    existUser = users[index];
-                }
-            }
-            callback(existUser);
+        function findUserByUsernameAndPassword(username, password){
+            var deferred = $q.defer();
+            $http.get("/api/assignment/user?username" + username + "&password=" + password)
+                .success(deferred.resolve);
+
+            return deferred.promise;
         }
 
-        function findAllUsers(callback){
-            callback(users);
+        function findAllUsers(){
+            var deferred = $q.defer();
+            $http.get("/api/assignment/user")
+                .success(deferred.resolve);
+
+            return deferred.promise;
         }
 
-        function deleteUserById(userId, callback){
-            for(var index in users){
-                if(users[index].id === userId){
-                    users.slice(index, 1);
-                }
-            }
-            callback(users);
+        function deleteUserById(userId){
+            var deferred = $q.defer();
+            $http.delete("/api/assignment/user/" + userId)
+                .success(deferred.resolve);
+
+            return deferred.promise;
         }
 
-        function createUser(newUser, callback){
-            newUser.id = Guid.create().value;
-            users.push(newUser);
-            callback(newUser);
+        function createUser(newUser){
+            var deferred = $q.defer();
+            $http.post("/api/assignment/user", newUser)
+                .success(deferred.resolve);
+
+            return deferred.promise;
         }
 
-        function updateUser(userId, updatedUser, callback){
-            for(var index in users){
+        function updateUser(userId, updatedUser){
+            var deferred = $q.defer();
+            $http.put("/api/assignment/user/" + userId, updatedUser)
+                .success(deferred.resolve);
 
-                if(users[index].id === userId){
-
-                    if(updatedUser.userName != null){
-                        users[index].userName = updatedUser.userName;
-                    }
-
-                    if(updatedUser.password != null){
-                        users[index].password = updatedUser.password;
-                    }
-
-                    if(updatedUser.firstName != null){
-                        users[index].firstName = updatedUser.firstName;
-                    }
-
-                    if(updatedUser.lastName != null){
-                        users[index].lastName = updatedUser.lastName;
-                    }
-
-                    if(updatedUser.email != null){
-                        users[index].email = updatedUser.email;
-                    }
-
-                    callback(users[index]);
-                }
-            }
+            return deferred.promise;
         }
     }
 

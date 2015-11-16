@@ -3,6 +3,7 @@ module.export = function(app){
     var uuid = require("node-uuid");
 
     var api = {
+        findUserById: findUserById,
         findAllUsers: findAllUsers,
         createUser: createUser,
         deleteUserById: deleteUserById,
@@ -36,6 +37,18 @@ module.export = function(app){
         return existUser;
     }
 
+    function findUserById(id){
+
+        var existUser = null;
+        for(var index in users){
+            if(users[index].id === id){
+                existUser = users[index];
+            }
+        }
+        return existUser;
+    }
+
+
     function findAllUsers(){
         return users;
     }
@@ -56,32 +69,30 @@ module.export = function(app){
     }
 
     function updateUser(userId, updatedUser){
-        for(var index in users){
+        var curUser = findUserById(userId);
 
-            if(users[index].id === userId){
-
-                if(updatedUser.userName != null){
-                    users[index].userName = updatedUser.userName;
-                }
-
-                if(updatedUser.password != null){
-                    users[index].password = updatedUser.password;
-                }
-
-                if(updatedUser.firstName != null){
-                    users[index].firstName = updatedUser.firstName;
-                }
-
-                if(updatedUser.lastName != null){
-                    users[index].lastName = updatedUser.lastName;
-                }
-
-                if(updatedUser.email != null){
-                    users[index].email = updatedUser.email;
-                }
-
-                return users;
+        if (curUser && updatedUser){
+            if(updatedUser.username != null){
+                users[index].username = updatedUser.username;
             }
+
+            if(updatedUser.password != null){
+                users[index].password = updatedUser.password;
+            }
+
+            if(updatedUser.firstName != null){
+                users[index].firstName = updatedUser.firstName;
+            }
+
+            if(updatedUser.lastName != null){
+                users[index].lastName = updatedUser.lastName;
+            }
+
+            if(updatedUser.email != null){
+                users[index].email = updatedUser.email;
+            }
+
+            return users;
         }
     }
 }

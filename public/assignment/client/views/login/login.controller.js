@@ -10,15 +10,15 @@
         function login(){
             UserService.findUserByUsernameAndPassword(
                 $scope.userName,
-                $scope.password,
-                function(user){
+                $scope.password
+            ).then(function(user){
                     if(user != null){
                         $rootScope.currentUser = user;
                         $location.url('/profile');
                     }else{
                         $location.url('/register');
                     }
-                });
+            });
         }
     }
 })();
