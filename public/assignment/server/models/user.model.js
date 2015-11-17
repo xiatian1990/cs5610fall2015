@@ -1,4 +1,4 @@
-module.export = function(app){
+module.exports = function(app){
     var users = require("./user.mock.json");
     var uuid = require("node-uuid");
 
@@ -7,8 +7,8 @@ module.export = function(app){
         findAllUsers: findAllUsers,
         createUser: createUser,
         deleteUserById: deleteUserById,
-        updateUser: updateUser
-        findUserByUsername: fineUserByUsername,
+        updateUser: updateUser,
+        findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials
     };
 
