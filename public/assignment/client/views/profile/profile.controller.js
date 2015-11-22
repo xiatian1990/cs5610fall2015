@@ -15,14 +15,12 @@
                 lastName: $scope.updateLastName,
                 email: $scope.updateEmail
             }
-
             UserService.updateUser(
                 $rootScope.currentUser.id,
                 updatedUser
-            ).then(function(updatedUser){
-                $rootScope.currentUser = updatedUser;
+            ).then(function(user){
+                $rootScope.currentUser = user;
             });
         }
-
     }
 })();

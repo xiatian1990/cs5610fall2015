@@ -15,7 +15,6 @@
                 lastName: $scope.updateLastName,
                 email: $scope.updateEmail
             }
-
             UserService.updateUser(
                 $rootScope.currentUser.id,
                 updatedUser,

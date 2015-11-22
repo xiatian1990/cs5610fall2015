@@ -41,6 +41,7 @@ module.exports = function(app){
 
         var existUser = null;
         for(var index in users){
+            console.log(users[index].id, id)
             if(users[index].id === id){
                 existUser = users[index];
             }
@@ -70,29 +71,30 @@ module.exports = function(app){
 
     function updateUser(userId, updatedUser){
         var curUser = findUserById(userId);
-
         if (curUser && updatedUser){
-            if(updatedUser.username != null){
-                users[index].username = updatedUser.username;
+
+            if(updatedUser.username){
+                curUser.username = updatedUser.username;
+                console.log("in")
             }
 
-            if(updatedUser.password != null){
-                users[index].password = updatedUser.password;
+            if(updatedUser.password){
+                curUser.password = updatedUser.password;
             }
 
-            if(updatedUser.firstName != null){
-                users[index].firstName = updatedUser.firstName;
+            if(updatedUser.firstName){
+                curUser.firstName = updatedUser.firstName;
             }
 
-            if(updatedUser.lastName != null){
-                users[index].lastName = updatedUser.lastName;
+            if(updatedUser.lastName){
+                curUser.lastName = updatedUser.lastName;
             }
 
-            if(updatedUser.email != null){
-                users[index].email = updatedUser.email;
+            if(updatedUser.email){
+                curUser.email = updatedUser.email;
             }
 
-            return users;
+            return curUser;
         }
     }
 }
