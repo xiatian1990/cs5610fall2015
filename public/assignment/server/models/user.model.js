@@ -41,7 +41,6 @@ module.exports = function(app){
 
         var existUser = null;
         for(var index in users){
-            console.log(users[index].id, id)
             if(users[index].id === id){
                 existUser = users[index];
             }
@@ -75,7 +74,6 @@ module.exports = function(app){
 
             if(updatedUser.username){
                 curUser.username = updatedUser.username;
-                console.log("in")
             }
 
             if(updatedUser.password){
