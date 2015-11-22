@@ -65,7 +65,7 @@ module.exports = function(app){
     function createUser(newUser){
         newUser.id = uuid.v1();
         users.push(newUser);
-        return users;
+        return newUser;
     }
 
     function updateUser(userId, updatedUser){
