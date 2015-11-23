@@ -14,19 +14,12 @@ module.exports = function(app){
 
     function findFormByTitle(title){
         existForm = null;
-        for index in forms{
-            if forms[index].title === title{
+        for(var index in forms){
+            if(forms[index].title === title){
                 existForm = forms[index];
             }
         }
         return existForm;
-    }
-
-    function createFormForUser(userId, form){
-        form.id = uuid.v1();
-        form.userId = userId;
-        forms.push(form);
-        return form;
     }
 
     function findAllFormsForUser(userId){
@@ -39,13 +32,22 @@ module.exports = function(app){
         return userForms;
     }
 
+    function createFormForUser(userId, form){
+        form.id = uuid.v1();
+        form.userId = userId;
+        forms.push(form);
+        userForms = findAllFormsForUser(userId);
+        return userForms;
+    }
+
     function deleteFormById(formId){
         for(var index in forms){
             if( forms[index].id === formId){
+                var curUserId = forms[index].userId
                 forms.splice(index, 1);
             }
         }
-        return forms;
+        return findAllFormsForUser(curUserId);
     }
 
     function updateFormById(formId, newForm){
@@ -55,6 +57,6 @@ module.exports = function(app){
                 forms[index].title = newForm.title;
             }
         }
-        return forms[index];
+        return findAllFormsForUser(newForm.userId);
     }
 }

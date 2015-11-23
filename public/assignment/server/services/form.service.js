@@ -1,41 +1,29 @@
 module.exports = function(app, model){
 
-    app.post("/api/assignment/user", function(req, res){
-        var user = req.body;
-        res.json(model.createUser(user));
+    app.post("/api/assignment/user/:userId/form", function(req, res){
+        var newForm = req.body;
+        var userId = req.param("userId");
+        res.json(model.createFormForUser(userId, newForm));
     });
 
-    app.get("/api/assignment/user", function(req, res){
-        var username = req.param("username");
-        var password = req.param("password");
-
-        if (username && password){
-            var credential = {"username": username, "password": password};
-            res.json(model.findUserByCredentials(credential));
-            return;
-        }
-
-        if (username){
-            res.json(model.findUserByUsername(username));
-            return;
-        }
-
-        res.json(model.findAllUsers());
-    });
+    app.get("/api/assignment/user/:userId/form", function(req, res){
+        var userId = req.param("userId");
+        res.json(model.findAllFormsForUser(userId));
+    })
 
     app.get("/api/assignment/user/:id", function(req, res){
         var id = req.param("id");
         res.json(model.findUserById(id));
     });
 
-    app.put("/api/assignment/user/:id", function(req, res){
-        var updatedUser = req.body;
-        var id = req.param("id");
-        res.json(model.updateUser(id, updatedUser));
+    app.put("/api/assignment/form/:formId", function(req, res){
+        var updatedForm = req.body;
+        var id = req.param("formId");
+        res.json(model.updateFormById(id, updatedForm));
     });
 
-    app.delete("/api/assignment/user/:id", function(req, res){
-        var id = req.param("id");
-        res.json(model.deleteUserById(id));
+    app.delete("/api/assignment/form/:formId", function(req, res){
+        var formId = req.param("formId");
+        res.json(model.deleteFormById(formId));
     });
 }
