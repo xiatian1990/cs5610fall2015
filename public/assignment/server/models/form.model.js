@@ -7,7 +7,8 @@ module.exports = function(app){
         findAllFormsForUser: findAllFormsForUser,
         deleteFormById: deleteFormById,
         updateFormById: updateFormById,
-        findFormByTitle: findFormByTitle
+        findFormByTitle: findFormByTitle,
+        findFieldsForForm: findFieldsForForm
     };
 
     return api;
@@ -58,5 +59,15 @@ module.exports = function(app){
             }
         }
         return findAllFormsForUser(newForm.userId);
+    }
+
+    function findFieldsForForm(formId){
+        for(var index in forms){
+            if(forms[index].id === formId){
+                var fields = forms[index].fields;
+                return fields;
+            }
+        }
+        return null;
     }
 }

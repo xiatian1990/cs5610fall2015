@@ -20,6 +20,9 @@
                 .when("/form", {
                     templateUrl: "./views/form/form.view.html"
                 })
+                .when("/user/:userId/form/:formId/fields", {
+                    templateUrl: "./views/field/field.view.html"
+                })
                 .otherwise({
                     redirectTo: "/home"
                 });

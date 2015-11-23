@@ -41,21 +41,21 @@
         }
 
         function selectForm(index){
-            $scope.currentForm = $scope.forms[index];
-            $scope.formName = $scope.currentForm.title;
+            $rootScope.currentForm = $scope.forms[index];
+            $scope.formName = $rootScope.currentForm.title;
         }
 
         function updateForm(){
 
             if($scope.currentForm != null){
                 var newForm = {
-                    id: $scope.currentForm.id,
+                    id: $rootScope.currentForm.id,
                     userId: currentUserId,
                     title: $scope.formName
                 };
 
                 FormService.updateFormById(
-                    $scope.currentForm.id,
+                    $rootScope.currentForm.id,
                     newForm
                 ).then(
                     function(forms){
