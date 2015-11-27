@@ -8,7 +8,9 @@ module.exports = function(app){
         deleteFormById: deleteFormById,
         updateFormById: updateFormById,
         findFormByTitle: findFormByTitle,
-        findFieldsForForm: findFieldsForForm
+        findFieldsForForm: findFieldsForForm,
+        createFieldForForm: createFieldForForm,
+        deleteFieldForForm: deleteFieldForForm
     };
 
     return api;
@@ -66,6 +68,32 @@ module.exports = function(app){
             if(forms[index].id === formId){
                 var fields = forms[index].fields;
                 return fields;
+            }
+        }
+        return null;
+    }
+
+    function createFieldForForm(formId, newField){
+        newField.id = uuid.v1();
+
+        for(var index in forms){
+            if(forms[index].id === formId){
+                forms[index].fields.push(newField);
+                return forms[index].fields;
+            }
+        }
+        return null;
+    }
+
+    function deleteFieldForForm(formId, fieldId){
+        for(var index in forms){
+            if(forms[index].id === formId){
+                for(var i in forms[index].fields){
+                    if(forms[index].fields[i].id === fieldId){
+                        forms[index].fields.splice(i, 1);
+                        return  forms[index].fields;
+                    }
+                }
             }
         }
         return null;

@@ -5,10 +5,10 @@
 
     function FieldController($scope, $rootScope, $location, FieldService){
         $scope.location = $location;
-        /*$scope.addForm = addForm;
-        $scope.updateForm = updateForm;
-        $scope.selectForm = selectForm;
-        $scope.deleteForm = deleteForm;*/
+        $scope.addField = addField;
+        $scope.removeField = removeField
+        /*$scope.updateForm = updateForm;
+        $scope.selectForm = selectForm;*/
         $scope.typeTemplates = [
             {
                 id: null,
@@ -92,6 +92,30 @@
         FieldService.getFieldsForForm(currentForm.id)
             .then(function(fields){
                 $scope.fields = fields;
-            })
+            });
+
+        function addField(newField){
+            if(newField){
+                FieldService.createFieldForForm(
+                    currentForm.id,
+                    newField
+                ).then(
+                    function(fields){
+                        $scope.fields = fields;
+                    }
+                );
+            }else{
+                alert("Please select a field type.")
+            }
+        }
+
+        function removeField(field){
+            FieldService.deleteFieldForForm(currentForm.id, field.id)
+                .then(
+                    function(fields){
+                        $scope.fields = fields;
+                    }
+                )
+        }
     }
 })();

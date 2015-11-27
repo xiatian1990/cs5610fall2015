@@ -6,7 +6,8 @@
     function FieldService($http, $q){
         var service = {
             getFieldsForForm: getFieldsForForm,
-            createFieldForForm: createFieldForForm
+            createFieldForForm: createFieldForForm,
+            deleteFieldForForm: deleteFieldForForm
         };
 
         return service;
@@ -20,6 +21,22 @@
             return deferred.promise;
         }
 
-        function createFieldForForm(){}
+        function createFieldForForm(formId, newField){
+            var deferred = $q.defer();
+
+            $http.post("/api/assignment/form/" + formId + "/field", newField)
+                .success(deferred.resolve);
+
+            return deferred.promise;
+        }
+
+        function deleteFieldForForm(formId, fieldId){
+            var deferred = $q.defer();
+
+            $http.delete("/api/assignment/form/" + formId + "/field/" + fieldId)
+                .success(deferred.resolve);
+
+            return deferred.promise;
+        }
     }
 })();

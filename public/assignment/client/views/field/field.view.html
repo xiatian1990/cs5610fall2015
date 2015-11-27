@@ -15,7 +15,7 @@
                 <div class="col-sm-4">
                     <i class="btn btn-primary glyphicon glyphicon-pencil"></i>
                     <i class="btn btn-success glyphicon glyphicon-plus"></i>
-                    <i class="btn btn-danger glyphicon glyphicon-remove"></i>
+                    <i class="btn btn-danger glyphicon glyphicon-remove" ng-click="removeField(field)"></i>
                     <i class="btn btn-default glyphicon glyphicon-menu-hamburger"></i>
                 </div>
             </div>
@@ -84,17 +84,17 @@
                 <div class="col-sm-6">
                     <label>Add New Field: </label>
                 </div>
-                <div class="col-sm-4">
-                    <a class="btn btn-success glyphicon glyphicon-plus"></a>
-                </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <select ng-model="model.fieldType" class="form-control">
-                        <option ng-repeat="type in typeTemplates">
+                        <option ng-repeat="type in typeTemplates" value="{{type}}">
                             {{type.label}}
                         </option>
                     </select>
+                </div>
+                <div class="col-sm-4">
+                    <a class="btn btn-success glyphicon glyphicon-plus" ng-click="addField(model.fieldType)"></a>
                 </div>
             </div>
         </div>

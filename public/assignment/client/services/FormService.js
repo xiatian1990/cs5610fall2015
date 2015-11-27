@@ -10,7 +10,6 @@
             findAllFormsForUser: findAllFormsForUser,
             deleteFormById: deleteFormById,
             updateFormById: updateFormById,
-            findFormByTitle: findFormByTitle
         }
 
         return service;
@@ -46,8 +45,6 @@
 
             return deferred.promise;
         }
-
-        function findFormByTitle(){}
     }
 
 })();
