@@ -19,7 +19,7 @@
             form.id = Guid.create().value;
             form.userId = userId;
             forms.push(form);
-            callback(form);
+            callback(forms);
         }
 
         function findAllFormsForUser(userId, callback){

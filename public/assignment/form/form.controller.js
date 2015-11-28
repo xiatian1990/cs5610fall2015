@@ -32,8 +32,8 @@
                 FormService.createFormForUser(
                     currentUserId,
                     newForm,
-                    function(form){
-                        $scope.forms.push(form);
+                    function(forms){
+                        $scope.forms = forms;
                     }
                 );
 
