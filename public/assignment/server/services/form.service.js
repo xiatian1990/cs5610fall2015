@@ -13,7 +13,7 @@ module.exports = function(app, model){
     }
 
     function deleteFormById(req, res){
-        model.deleteFormById(req.param("fromId")).then(function(forms){
+        model.deleteFormById(req.param("formId")).then(function(forms){
             res.json(forms);
         });
     }
