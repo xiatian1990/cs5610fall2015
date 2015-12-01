@@ -106,38 +106,39 @@ module.exports = function(app, mongoose, db){
     }
 
     function findFieldsForForm(formId){
-        for(var index in forms){
-            if(forms[index].id === formId){
-                var fields = forms[index].fields;
-                return fields;
-            }
-        }
-        return null;
+        var deferred = Q.defer();
+
+        formModel.findOne({id: formId}, function(err, form){
+            deferred.resolve(form.fields);
+        });
+        return deferred.promise;
     }
 
     function createFieldForForm(formId, newField){
+        var deferred = Q.defer();
         newField.id = uuid.v1();
 
-        for(var index in forms){
-            if(forms[index].id === formId){
-                forms[index].fields.push(newField);
-                return forms[index].fields;
-            }
-        }
-        return null;
+        formModel.findOne({id: formId}, function(err, form){
+            form.fields.push(newField);
+            form.save(function(err, form){
+                deferred.resolve(form.fields);
+            });
+        });
+        return deferred.promise;
     }
 
     function deleteFieldForForm(formId, fieldId){
-        for(var index in forms){
-            if(forms[index].id === formId){
-                for(var i in forms[index].fields){
-                    if(forms[index].fields[i].id === fieldId){
-                        forms[index].fields.splice(i, 1);
-                        return  forms[index].fields;
-                    }
+        var deferred = Q.defer();
+        formModel.findOne({id: formId}, function(err, form){
+            for (var index in form.fields){
+                if (form.fields[index].id === fieldId){
+                    form.fields.splice(index, 1);
                 }
             }
-        }
-        return null;
+            form.save(function(err, form){
+                deferred.resolve(form.fields);
+            });
+        });
+        return deferred.promise;
     }
 }
