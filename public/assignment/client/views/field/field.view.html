@@ -58,21 +58,27 @@
                 </div>
 
                 <div ng-switch-when="TEXTAREA">
-                    <div class="col-sm-6">
-                        <textarea class="form-control" placeholder={{field.placeholder}}></textarea>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <textarea class="form-control" placeholder={{field.placeholder}}></textarea>
+                        </div>
                     </div>
                 </div>
 
                 <div ng-switch-when="CHECKBOXES">
-                    <ul class="checkbox">
-                        <li ng-repeat="option in field.options"><input type="checkbox" value={{option.value}}>{{option.value}}</li>
-                    </ul>
+                    <div class="row">
+                        <ul class="checkbox">
+                            <li ng-repeat="option in field.options"><input type="checkbox" value={{option.value}}>{{option.value}}</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div ng-switch-when="RADIOS">
-                    <ul class="radio">
-                        <li ng-repeat="option in field.options"><input type="radio" value={{option.value}}>{{option.value}}</li>
-                    </ul>
+                    <div class="row">
+                        <ul class="radio">
+                            <li ng-repeat="option in field.options"><input type="radio" value={{option.value}}>{{option.value}}</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@
                 $scope.userName,
                 $scope.password
             ).then(function(user){
-                    if(user != null){
+                    if(user){
                         $rootScope.currentUser = user;
                         $location.url('/profile');
                     }else{

@@ -1,6 +1,16 @@
-module.exports = function(app){
-    var users = require("./user.mock.json");
-    var uuid = require("node-uuid");
+var users = require("./user.mock.json");
+var uuid = require("node-uuid");
+var Q = require("q");
+
+module.exports = function(app, mongoose, db){
+
+    var userSchema = require("./user.schema.js")(mongoose);
+    var userModel = mongoose.model("userModel", userSchema);
+
+    //init the db with mock.json
+    for(var index in users){
+        createUser(users[index]);
+    }
 
     var api = {
         findUserById: findUserById,
@@ -11,88 +21,87 @@ module.exports = function(app){
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials
     };
-
     return api;
 
     function findUserByUsername(username){
-        var existUser = null;
-        for(var index in users){
-            if(users[index].username === username){
-                existUser = users[index];
-            }
-        }
-        return existUser;
+        var deferred = Q.defer();
+
+        userModel.findOne({username: username}, function(err, user){
+            deferred.resolve(user);
+        });
+        return deferred.promise;
     }
 
-
     function findUserByCredentials(credential){
+        var deferred = Q.defer();
+
         var username = credential.username;
         var password = credential.password;
-        var existUser = null;
-        for(var index in users){
-            if(users[index].username === username && users[index].password === password){
-                existUser = users[index];
-            }
-        }
-        return existUser;
+
+        userModel.findOne({username: username, password: password}, function(err, user){
+            deferred.resolve(user);
+        });
+        return deferred.promise;
     }
 
     function findUserById(id){
+        var deferred = Q.defer();
 
-        var existUser = null;
-        for(var index in users){
-            if(users[index].id === id){
-                existUser = users[index];
-            }
-        }
-        return existUser;
+        userModel.findOne({id: id}, function(err, user){
+            deferred.resolve(user);
+        });
+        return deferred.promise;
     }
 
-
     function findAllUsers(){
-        return users;
+        var deferred = Q.defer();
+
+        userModel.find(function(err, users){
+            deferred.resolve(users);
+        });
+        return deferred.promise;
     }
 
     function deleteUserById(userId){
-        for(var index in users){
-            if(users[index].id === userId){
-                users.slice(index, 1);
-            }
-        }
-        return users;
+        var deferred = Q.defer();
+
+        userModel.remove({id: userId}, function(err, users){
+            deferred.resolve(users);
+        });
+        return deferred.promise;
     }
 
     function createUser(newUser){
-        newUser.id = uuid.v1();
-        users.push(newUser);
-        return newUser;
+        var deferred = Q.defer();
+
+        userModel.find({username: newUser.username}, function(err, users){
+            if (users.length > 0){
+                console.log("username exists, please use another username.")
+            }else{
+                if (! newUser.id){
+                    newUser.id = uuid.v1();
+                }
+                userModel.create(newUser, function(err, user){
+                    deferred.resolve(user);
+                });
+            }
+        });
+        return deferred.promise;
     }
 
     function updateUser(userId, updatedUser){
-        var curUser = findUserById(userId);
-        if (curUser && updatedUser){
+        var deferred = Q.defer();
 
-            if(updatedUser.username){
-                curUser.username = updatedUser.username;
+        userModel.findOne({id: userId}, function(err, foundUser){
+            if (foundUser && updatedUser){
+                for(var key in updatedUser){
+                    foundUser[key] = updatedUser[key];
+                }
+                foundUser.save(function(err, foundUser){
+                    deferred.resolve(foundUser);
+                });
             }
-
-            if(updatedUser.password){
-                curUser.password = updatedUser.password;
-            }
-
-            if(updatedUser.firstName){
-                curUser.firstName = updatedUser.firstName;
-            }
-
-            if(updatedUser.lastName){
-                curUser.lastName = updatedUser.lastName;
-            }
-
-            if(updatedUser.email){
-                curUser.email = updatedUser.email;
-            }
-
-            return curUser;
-        }
+        })
+        return deferred.promise;
     }
-}
+};

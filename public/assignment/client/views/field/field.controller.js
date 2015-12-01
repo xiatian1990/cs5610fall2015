@@ -7,8 +7,7 @@
         $scope.location = $location;
         $scope.addField = addField;
         $scope.removeField = removeField
-        /*$scope.updateForm = updateForm;
-        $scope.selectForm = selectForm;*/
+        //$scope.updateForm = updateForm;
         $scope.typeTemplates = [
             {
                 id: null,
