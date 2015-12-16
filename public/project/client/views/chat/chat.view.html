@@ -1,0 +1,12 @@
+<div class="row main" ng-controller="ChatController">
+    <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
+        <input type="text" placeholder="Input message and press enter" class="form-control" ng-model="message"  ng-keypress="keyPress($event)">
+
+        <div id="content" class="panel panel-default" style="margin-top: 2em; min-height: 500px">
+            <div class="panel-body">
+                <div ng-repeat="msg in messages">{{msg.user}} : {{msg.message}}</div>
+            </div>
+        </div>
+    </div>
+
+</div>

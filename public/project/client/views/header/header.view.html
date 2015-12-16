@@ -1,5 +1,5 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController">
-    <div class="container-fluid">
+<nav class="navbar navbar-inverse navbar-default" ng-controller="HeaderController">
+    <div class="container-fluid" style="background-color:#444">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -7,14 +7,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#/home">Form Maker</a>
+            <a class="navbar-brand" href="#/home">YumMe</a>
         </div>
+
         <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#/chat">Chat</a></li>
+            </ul>
+
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/register" ng-class="{'active': $location.url() == '/register'}">Register</a></li>
-                <li><a href="#/login" ng-class="{'active': $location.url() == '/login'}">Login</a></li>
-                <li><a href="#/home" ng-class="{'active': $location.url() == ''}">{{userName}}</a></li>
-                <li><a href="#/login" ng-class="{'active': $location.url() == '/login'}">Logout</a></li>
+                <li><a href="#/register" ng-class="{'active': $location.url() == '/register', 'hidden': currentUser}">Register</a></li>
+                <li><a href="#/login" ng-class="{'active': $location.url() == '/login', 'hidden': currentUser}">Login</a></li>
+                <li><a href="#/profile" ng-class="{'hidden': ! currentUser}">{{currentUser.username}}</a></li>
+                <li><a href="#/login" ng-class="{'hidden': ! currentUser}" ng-click="logout()">LogOut</a></li>
             </ul>
         </div>
     </div>

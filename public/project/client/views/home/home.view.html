@@ -1,0 +1,42 @@
+<div class="row main" ng-controller="HomeController">
+
+    <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
+        <h1 class="page-header">Welcome!</h1>
+
+        <input type="text" class="form-control" placeholder="Search... e.g: beef" ng-model="q">
+
+        <div class="page-panel col-sm-5 col-md-5" ng-class="{'col-sm-offset-2 col-md-offset-2': $index % 2 != 0}" ng-repeat="card in cards.$$state.value | filter: q as results">
+            <a href="#/details/{{card.id}}">
+                <div class="row text-center">
+                    <h4>{{card.title}}</h4>
+                </div>
+                <img src="{{card.imgUrl}}" class="detail-photo">
+
+                <div ng-switch="card.rating">
+                    <div ng-switch-when="0">
+                        <img src="./image/0star.png" class="star-pic center-block">
+                    </div>
+                    <div ng-switch-when="1">
+                        <img src="./image/1star.png" class="star-pic center-block">
+                    </div>
+                    <div ng-switch-when="2">
+                        <img src="./image/2star.png" class="star-pic center-block">
+                    </div>
+                    <div ng-switch-when="3">
+                        <img src="./image/3star.png" class="star-pic center-block">
+                    </div>
+                    <div ng-switch-when="4">
+                        <img src="./image/4star.png" class="star-pic center-block">
+                    </div>
+                    <div ng-switch-when="5">
+                        <img src="./image/5star.png" class="star-pic center-block">
+                    </div>
+                </div>
+            </a>
+            <button class="btn btn-warning center-block" ng-click="collect($index)" style="margin-top: 5%">
+                Collect
+            </button>
+            <!--<i class="glyphicon glyphicon-ok" ng-class="{'show': }"></i>-->
+        </div>
+    </div>
+</div>

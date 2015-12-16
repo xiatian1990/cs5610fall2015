@@ -2,11 +2,6 @@
  * Base structure
  */
 
-/* Move down content because we have a fixed navbar that is 50px tall */
-body {
-  padding-top: 50px;
-}
-
 
 /*
  * Global add-ons
@@ -21,9 +16,20 @@ body {
  * Top navigation
  * Hide default border to remove 1px line.
  */
-.navbar-fixed-top {
+
+
+.navbar-default {
+  margin-top: 0px;
+  border-radius: 0px;
   border: 0;
 }
+
+.navbar {
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
+    overflow: visible;
+}
+
 
 /*
  * Sidebar
@@ -39,6 +45,30 @@ body {
     top: 51px;
     bottom: 0;
     left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+  }
+}
+
+/*
+ * Rsidebar
+ */
+
+/* Hide for mobile, show later */
+.rsidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .rsidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    right: 0;
     z-index: 1000;
     display: block;
     padding: 20px;
@@ -102,4 +132,33 @@ body {
 .placeholder img {
   display: inline-block;
   border-radius: 50%;
+}
+
+.photo {
+    width: 100%;
+    height: auto;
+    min-height: 220px
+    min-width: 220px
+}
+
+.page-panel {
+    background-color: white;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 1px solid transparent;
+    box-shadow: 0px 0px 10px #c8c8c8;
+}
+
+.star-pic {
+    width: 70%;
+    height: auto;
+    min-height: 30px;
+    padding-top: 5%
+}
+
+.detail-photo {
+    width: 90%;
+    height: auto;
 }

@@ -41,6 +41,7 @@
         }
 
         function selectForm(index){
+            console.log(index, typeof(index))
             $rootScope.currentForm = $scope.forms[index];
             $scope.formName = $rootScope.currentForm.title;
         }

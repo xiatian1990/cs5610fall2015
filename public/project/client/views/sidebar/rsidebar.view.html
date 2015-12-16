@@ -1,0 +1,7 @@
+<nav class="col-sm-2 col-md-2 rsidebar" ng-controller="SidebarController">
+    <ul class="list-group" ng-show="$location.url() == '/chat'">
+        <li class="list-group-item" ng-repeat="user in userList">
+            {{user.username}}
+        </li>
+    </ul>
+</nav>

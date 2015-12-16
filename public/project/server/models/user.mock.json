@@ -1,0 +1,16 @@
+[
+  {"id": "123", "firstName": "Alice", "lastName": "Wonderland", "username": "alice", "password": "alice"},
+  {"id": "123456", "firstName": "Tim", "lastName": "Jobs", "username": "timjobs", "password": "12345", "imgURL": "asdf.png",
+    "cardCollection": ["000132", "000119", "000123"],
+    "following": ["234", "345", "456"],
+    "followed": ["123", "345", "456", "567"],
+    "chat": [
+      {"receiverId": "123", "text": ["Hi how are you today", "Are you there?"], "card": ["001", "002"]},
+      {"receiverId": "234", "text": ["do you have and recommendation for Ramen?", "Japanese style is better"], "card": ["001", "002"]}
+    ]
+  },
+  {"id": "234", "firstName": "Bob", "lastName": "Hope", "username": "Bob", "password": "bob"},
+  {"id": "345", "firstName": "Charlie", "lastName": "Brown", "username": "Charlie", "password": "charlie"},
+  {"id": "456", "firstName": "Dan", "lastName": "Craig", "username": "Dan", "password": "dan"},
+  {"id": "567", "firstName": "Edward", "lastName": "Norton", "username": "Edward", "password": "ed"}
+]

@@ -17,11 +17,17 @@
                 .when("/profile", {
                     templateUrl: "./views/profile/profile.view.html"
                 })
+                .when("/details/:cardId", {
+                    templateUrl: "./views/card/details.view.html"
+                })
                 .when("/form", {
                     templateUrl: "./views/form/form.view.html"
                 })
                 .when("/user/:userId/form/:formId/fields", {
                     templateUrl: "./views/field/field.view.html"
+                })
+                .when("/chat", {
+                    templateUrl: "./views/chat/chat.view.html"
                 })
                 .otherwise({
                     redirectTo: "/home"
