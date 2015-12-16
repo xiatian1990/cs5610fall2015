@@ -23,7 +23,7 @@ module.exports = function(app, mongoose, db){
         deleteFieldForCard: deleteFieldForCard,
         loadAllCards: loadAllCards,
         findCardById: findCardById,
-        addCommentToCard, addCommentToCard
+        addCommentToCard: addCommentToCard
     };
 
     return api;
