@@ -16,8 +16,8 @@
 
         var socket;
 
-        if ($location.host.indexOf('127.0.0.1') !== -1 ||
-             $location.host.indexOf('localhost') !== -1) {
+        if ($location.host().indexOf('127.0.0.1') !== -1 ||
+             $location.host().indexOf('localhost') !== -1) {
             socket = io.connect('http://localhost:3000')
         } else {
             socket = io.connect('ws://cs5610-xiatian.rhcloud.com:8000')
